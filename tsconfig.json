@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // Cible JavaScript moderne
+    "useDefineForClassFields": true, // Utilisation de defineProperty pour les champs de classe
+    "lib": ["ES2020", "DOM", "DOM.Iterable"], // Librairies standard disponibles (ES, DOM)
+    "module": "ESNext", // Utilise les modules ES (ESM)
+    "skipLibCheck": true, // Très utile pour ignorer les erreurs de type dans node_modules
+
+    /* Bundler mode */
+    "moduleResolution": "bundler", // Comment les modules sont résolus (pour Vite/Webpack)
+    "allowImportingTsExtensions": true, // Permet les imports avec .ts/.tsx
+    "resolveJsonModule": true, // Permet l'import de fichiers JSON
+    "isolatedModules": true, // Aide à l'intégration avec des outils comme Vite
+    "noEmit": true, // TypeScript ne générera pas de fichiers JS directement (Vite le fera)
+    "jsx": "react-jsx", // ESSENTIEL : Indique à TypeScript de traiter le JSX avec le runtime de React
+    "esModuleInterop": true, // ESSENTIEL : Permet des imports comme 'import React from "react"'
+    "allowSyntheticDefaultImports": true, // Permet les imports par défaut même pour des modules sans export default explicite
+
+    /* Linting / Vérifications de code */
+    "strict": true, // Active toutes les vérifications strictes de TypeScript
+    "noUnusedLocals": true, // Signale les variables non utilisées
+    "noUnusedParameters": true, // Signale les paramètres de fonction non utilisés
+    "noFallthroughCasesInSwitch": true // Empêche les "fallthrough" implicites dans les switch
+  },
+  // Inclut le dossier 'src' par défaut pour le type-checking global.
+  // Les fichiers tsconfig.app.json et tsconfig.node.json peuvent affiner leurs propres inclusions.
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"] // Exclut les dossiers courants de la compilation
+}
