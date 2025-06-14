@@ -5,11 +5,13 @@ import { loadAlarms, saveAlarms } from './utils/storage.ts';
 import AlarmList from './components/AlarmList.tsx';
 import { useAlarmScheduler } from './hooks/useAlarmScheduler.ts';
 import ThemeToggle from './components/ThemeToggle.tsx';
+// Supprimé : import { BellAlertIcon } from '@heroicons/react/24/outline'; // Cette ligne a été supprimée
 import './index.css'; 
 
 function App() {
   const [alarms, setAlarms] = useState<Alarm[]>([]);
   const [customSound, setCustomSound] = useState<string>('');
+  const [isAlarmRinging, setIsAlarmRinging] = useState(false);
 
   // Ref pour l'aperçu audio dans la section SoundUploader
   const audioPreviewRef = useRef<HTMLAudioElement | null>(null);
@@ -40,7 +42,8 @@ function App() {
     saveAlarms(alarms);
   }, [alarms]);
 
-  useAlarmScheduler(alarms);
+  // Passe setIsAlarmRinging au hook useAlarmScheduler
+  useAlarmScheduler(alarms, setIsAlarmRinging);
 
   const addAlarm = (alarm: Alarm) => {
     const alarmWithCustomSound = {
@@ -98,7 +101,14 @@ function App() {
   return (
     <div className="min-h-screen">
       <header className="max-w-3xl mx-auto py-6 px-4 mb-6 flex items-center justify-between">
-        <h1 className="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400">⏰ WakeTime</h1>
+        <h1 className="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400 flex items-center">
+        {/* L'icône SVG est maintenant plus grande et a un peu plus d'espace */}
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" 
+             className={`size-12 mr-3 ${isAlarmRinging ? 'animate-ring-bell' : ''}`}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
+        </svg>
+           WakeTime
+        </h1>
         <ThemeToggle />
       </header>
       <main className="max-w-3xl mx-auto p-4 space-y-8">

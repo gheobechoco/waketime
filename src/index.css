@@ -78,3 +78,14 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+/* --- Animation pour l'alarme --- */
+@keyframes ring-bell {
+  0%, 100% { transform: rotate(0deg); }
+  10%, 30%, 50%, 70%, 90% { transform: rotate(15deg); }
+  20%, 40%, 60%, 80% { transform: rotate(-15deg); }
+}
+
+.animate-ring-bell {
+  animation: ring-bell 0.8s ease-in-out infinite; /* L'animation se répète indéfiniment */
+}

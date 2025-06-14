@@ -25,6 +25,7 @@ export default function AlarmForm({ onAdd }: { onAdd: (alarm: Alarm) => void }) 
       isActive: true,
       // Si aucun jour n'est sélectionné, l'alarme est pour tous les jours par défaut
       days: days.length > 0 ? days : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      volume: undefined
     };
     onAdd(newAlarm);
     setTime('');

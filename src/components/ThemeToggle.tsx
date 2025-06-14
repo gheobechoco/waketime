@@ -1,6 +1,6 @@
 // src/components/ThemeToggle.tsx
 import  { useState, useEffect } from 'react'; // Importe React, useState et useEffect
-import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'; // Importe les icônes de soleil et de lune de Heroicons
+import { MoonIcon, SunIcon,  } from '@heroicons/react/24/solid'; // Importe les icônes de soleil et de lune de Heroicons
 
 export default function ThemeToggle() {
   // MODIFICATION 1: Correction de la syntaxe de useState pour l'initialisation du thème.
